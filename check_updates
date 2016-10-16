@@ -48,7 +48,7 @@ APT_CHECK = "/usr/lib/update-notifier/apt-check"
 try:
     mtime = os.path.getmtime(TIMESTAMP_FILE)
 except Exception as e:
-    print("UKNOWN -", str(e))
+    print("UNKNOWN -", str(e))
     sys.exit(3)
 
 index_age = datetime.utcfromtimestamp(mtime)
@@ -64,7 +64,7 @@ if index_age < max_age:
 try:
     res = subprocess.check_output([APT_CHECK], stderr=subprocess.STDOUT)
 except Exception as e:
-    print("UKNOWN -", str(e))
+    print("UNKNOWN -", str(e))
     sys.exit(3)
 
 num_updates, num_sec_updates = [int(x) for x in res.decode("UTF-8").split(";")]
