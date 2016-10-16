@@ -22,7 +22,7 @@
 # Return values as per Nagios/Icinga conventions:
 #   0 - OK: no security updates found
 #   1 - WARNING: uninstalled security updates available
-#   2 - ERROR: package index is out of date
+#   2 - CRITICAL: package index is out of date
 #   3 - UNKNOWN: i.e. package missing, incompatible operating system, etc.
 #
 from __future__ import print_function
@@ -55,7 +55,7 @@ index_age = datetime.utcfromtimestamp(mtime)
 max_age = datetime.utcnow() - timedelta(hours=INDEX_MAX_AGE_HOURS)
 
 if index_age < max_age:
-    print("ERROR - package index is older than {} hours".format(INDEX_MAX_AGE_HOURS))
+    print("CRITICAL - package index is older than {} hours".format(INDEX_MAX_AGE_HOURS))
     sys.exit(2)
 
 
